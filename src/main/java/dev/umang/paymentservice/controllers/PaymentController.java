@@ -1,7 +1,8 @@
-package dev.umang.paymentservice;
+package dev.umang.paymentservice.controllers;
 
 
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import dev.umang.paymentservice.dtos.PaymentRequestDto;
 import dev.umang.paymentservice.services.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class PaymentController {
     private IPaymentService paymentService;
 
     @PostMapping
-    public String generatePaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws RazorpayException {
+    public String generatePaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws RazorpayException, StripeException {
         return paymentService.generatePaymentLink(paymentRequestDto.getOrderId(),
                 paymentRequestDto.getAmount(),
                 paymentRequestDto.getPhoneNumber(),

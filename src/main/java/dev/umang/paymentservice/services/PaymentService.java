@@ -1,6 +1,7 @@
 package dev.umang.paymentservice.services;
 
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import dev.umang.paymentservice.strategies.PaymentGateway;
 import dev.umang.paymentservice.strategies.PaymentGatewayChooserStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class PaymentService implements IPaymentService {
                                       Long amount,
                                       String phoneNumber,
                                       String name,
-                                      String email) throws RazorpayException {
+                                      String email) throws RazorpayException, StripeException {
 
         PaymentGateway paymentGateway = paymentGatewayChooserStrategy.getBestPaymentGateway();
 
